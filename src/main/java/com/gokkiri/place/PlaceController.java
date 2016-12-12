@@ -1,5 +1,11 @@
 package com.gokkiri.place;
 
-public class PlaceController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/placeboard")
+public class PlaceController {
+	
+	
 }
