@@ -16,6 +16,6 @@ public class PlaceController {
 	
 	@Resource(name="placeService")
 	private PlaceService placeService;
-	
+	  
 	
 }
