@@ -1,1 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+PUBLIC " - //mybatis.org//DTD Config 3.0//EN"
+	   " http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- mybatis 기본 세팅 -->
+	<settings>
+		<setting name="cacheEnabled"              value="true"/>  
+        <setting name="lazyLoadingEnabled"        value="false"/>  
+        <setting name="multipleResultSetsEnabled" value="true"/>  
+        <setting name="useColumnLabel"            value="true"/>  
+        <setting name="useGeneratedKeys"          value="false"/>  
+        <setting name="defaultExecutorType"       value="SIMPLE"/>  
+        <setting name="defaultStatementTimeout"   value="25000"/>  
+	</settings>
+	
+	<!-- SQL 정의한 xml문서 Mapping -->
+	<mappers>
+	    <mapper resource="gokkiri/config/memSQL.xml" />
+	    <mapper resource="gokkiri/config/area_imgSQL.xml" />
+	    <mapper resource="gokkiri/config/areaSQL.xml" />
+	    <mapper resource="gokkiri/config/city_imgSQL.xml" />
+	    <mapper resource="gokkiri/config/citySQL.xml" />
+	    <mapper resource="gokkiri/config/pushSQL.xml" />
+	    <mapper resource="gokkiri/config/qnaSQL.xml" />
+	    <mapper resource="gokkiri/config/revSQL.xml" />
+	    <mapper resource="gokkiri/config/schSQL.xml" />
+	    <mapper resource="gokkiri/config/stateSQL.xml" />
+	    <mapper resource="gokkiri/config/tip_imgSQL.xml" />
+	    <mapper resource="gokkiri/config/tipSQL.xml" />  
+	</mappers>
+
+
+</configuration>
