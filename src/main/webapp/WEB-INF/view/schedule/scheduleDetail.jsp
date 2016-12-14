@@ -8,5 +8,7 @@
 </head>
 <body>
 
+일정게시판 글 상세보기!
+
 </body>
 </html>

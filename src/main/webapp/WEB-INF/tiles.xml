@@ -27,6 +27,20 @@
 	<!-- Place -->
 	
 	<!-- Schedule --> 
+	<!-- 일정게시판 리스트 보기 -->
+	<definition name="scheduleList" extends="default">
+		<put-attribute name="body" value="/WEB-INF/view/schedule/scheduleList.jsp" />
+	</definition>
+	
+	<!-- 일정게시판 글 상세보기 -->
+	<definition name="scheduleDetail" extends="default">
+		<put-attribute name="body" value="/WEB-INF/view/schedule/scheduleDetail.jsp" />
+	</definition>
+	
+	<!-- 일정만들기 폼 보기 -->
+	<definition name="scheduleWriteForm" extends="default">
+		<put-attribute name="body" value="/WEB-INF/view/schedule/scheduleWriteForm.jsp" />
+	</definition>
 	
 	<!-- QnA -->
 	 

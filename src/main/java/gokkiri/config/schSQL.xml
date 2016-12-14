@@ -1,1 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="schedule">
+
+	<resultMap type="schedule" id="scheduleRes">
+	
+		<result property="m_email" column="m_email" />
+		<result property="a_no" column="a_no" />
+		
+		<!-- SCH 테이블 -->
+		<result property="s_no" column="s_no" />
+		<result property="s_date" column="s_date" />
+		<result property="s_start_date" column="s_start_date" />
+		<result property="s_end_date" column="s_end_date" />
+		<result property="s_like" column="s_like" />
+		<result property="s_hit" column="s_hit" />
+		<result property="s_private" column="s_private" />
+		<result property="s_together" column="s_together" />
+		<result property="s_name" column="s_name" />
+		
+		<!-- SCH_DAY 테이블 -->
+		<result property="s_day_no" column="s_day_no" />
+		<result property="s_day_index" column="s_day_index" />
+		
+		<!-- SCH_DETAIL 테이블 -->
+		<result property="s_detail_memo" column="s_detail_memo" />
+		<result property="s_detail_index" column="s_detail_index" />
+		<result property="s_detail_cost" column="s_detail_cost" />
+		
+		<!-- SCH_CO 테이블 -->
+		<result property="s_co_no" column="s_co_no" />
+		<result property="s_co_con" column="s_co_con" />
+		<result property="s_co_date" column="s_co_date" />
+
+	</resultMap>
+	
+	<!-- 일정 게시판 리스트 보기 -->
+	<select id="scheduleList" resultMap="scheduleRes">
+		SELECT *
+		FROM SCH
+		ORDER BY S_NO DESC
+	</select>
+	
+	<!-- 일정게시판 글 상세보기 -->
+	<select id="scheduleDetail" resultMap="scheduleRes">
+		SELECT *
+		FROM SCH
+		WHERE
+			S_NO = #{s_no}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="scheduleUpdateReadhit" parameterType="Integer">
+		UPDATE SCH
+		SET
+			S_HIT = S_HIT + 1
+		WHERE
+			S_NO = #{s_no}
+	</update>
+	
+	<!-- 댓글 총개수 -->
+	<select id="sch_commCount" parameterType="Integer" resultType="Integer">
+		SELECT count(*)
+		FROM SCH_CO
+		WHERE
+			S_NO = #{s_no}
+	</select>
+
+ </mapper>
