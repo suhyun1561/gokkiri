@@ -23,6 +23,15 @@
 	<!-- Mypage -->
 	
 	<!-- Area  -->
+	<!-- 여행지 리스트 보기 -->
+	<definition name="areaList" extends="default">
+		<put-attribute name="body" value="/WEB-INF/view/area/areaList.jsp" />
+	</definition>
+	
+	<!-- 여행지 글쓰기 폼 -->
+	<definition name="areaWriteForm" extends="default">
+		<put-attribute name="body" value="/WEB-INF/view/area/areaWriteForm.jsp" />
+	</definition>
 	
 	<!-- Place -->
 	
