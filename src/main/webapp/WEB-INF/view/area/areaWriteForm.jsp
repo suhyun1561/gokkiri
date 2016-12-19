@@ -11,7 +11,7 @@
 
 function areaList(){
 	if(confirm("리스트로 이동하시겠습니까?") == true){
-		location.href='areaList.go';
+		location.href='areaList.go?a_cate=0';
 	}else{
 		return;
 	}

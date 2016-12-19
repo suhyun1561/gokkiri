@@ -23,6 +23,7 @@ public class AreaModel {
 	private int a_img_no;		//여행지 사진 번호
 	private String a_img_org;	//여행지 사진 원본 이름
 	private String a_img_sav;	//여행지 사진 저장 이름
+	private int a_img_index;	//여행지 리스트에 띄워줄 첫 이미지
 	
 	public int getC_no() {
 		return c_no;
@@ -107,6 +108,12 @@ public class AreaModel {
 	}
 	public void setA_img_sav(String a_img_sav) {
 		this.a_img_sav = a_img_sav;
+	}
+	public int getA_img_index() {
+		return a_img_index;
+	}
+	public void setA_img_index(int a_img_index) {
+		this.a_img_index = a_img_index;
 	}
 	
 	

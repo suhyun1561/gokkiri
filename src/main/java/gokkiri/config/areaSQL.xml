@@ -25,14 +25,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="a_img_no" column="a_img_no" />
 		<result property="a_img_org" column="a_img_org" />
 		<result property="a_img_sav" column="a_img_sav" />
+		<result property="a_img_index" column="a_ing_index" />
 		
 	</resultMap>
 	
 	<!-- SELECT -->
-	<!-- 여행지 리스트 보기 -->
-	<select id="areaList" resultMap="areaRes" >
+	<!-- 여행지 리스트  보기 -->
+	<select id="areaList" resultMap="areaRes" parameterType="Integer" >
 		SELECT *
-		FROM AREA
+		FROM AREA INNER JOIN AREA_IMG
+		USING(A_NO)
+		WHERE A_IMG_INDEX = 1 AND A_CATE = #{a_cate}
+		ORDER BY A_NO DESC
+	</select>
+	
+	<!-- 여행지 리스트 - 제목 검색 -->
+	<select id="areaSearch0" resultMap="areaRes" parameterType="HashMap">
+		SELECT *
+		FROM AREA INNER JOIN AREA_IMG
+		USING(A_NO)
+		WHERE A_IMG_INDEX = 1 AND A_CATE = #{a_cate} AND A_NAME LIKE #{searchKeyword}
+		ORDER BY A_NO DESC
+	</select>
+	
+	<!-- 여행지 리스트 - 내용 검색 -->
+	<select id="areaSearch1" resultMap="areaRes" parameterType="HashMap">
+		SELECT *
+		FROM AREA INNER JOIN AREA_IMG
+		USING(A_NO)
+		WHERE A_IMG_INDEX = 1 AND A_CATE = #{a_cate} AND A_CON LIKE #{searchKeyword}
 		ORDER BY A_NO DESC
 	</select>
 	
@@ -48,6 +69,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM AREA_IMG
 		WHERE A_NO = #{a_no}
+	</select>
+	
+	<!-- 여행지 상세보기 할때 이미지 갤러리 메인 이미지 불러오기 -->
+	<select id="main_img" resultMap="areaRes" parameterType="Integer">
+		SELECT *
+		FROM AREA_IMG
+		WHERE A_NO = #{a_no} AND A_IMG_INDEX = 1
 	</select>
 	
 	<!-- INSERT -->

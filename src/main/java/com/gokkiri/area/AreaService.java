@@ -18,8 +18,33 @@ public class AreaService implements AreaDao{
 
 	//여행지 리스트 보기
 	@Override
-	public List<AreaModel> areaList() {
-		return sqlSessionTemplate.selectList("area.areaList");
+	public List<AreaModel> areaList(int a_cate) {
+
+		return sqlSessionTemplate.selectList("area.areaList", a_cate);
+	}
+	
+	//여행지 리스트 - 제목 검색
+	@Override
+	public List<AreaModel> areaSearch0(String searchKeyword, int a_cate) {
+		
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("searchKeyword", "%" + searchKeyword + "%");
+		hm.put("a_cate", a_cate);
+		
+		return sqlSessionTemplate.selectList("area.areaSearch0", hm);
+		
+	}
+
+	//여행지 리스트 - 내용 검색
+	@Override
+	public List<AreaModel> areaSearch1(String searchKeyword, int a_cate) {
+		
+		HashMap<String,Object> hm = new HashMap<String, Object>();
+		hm.put("searchKeyword", "%" + searchKeyword + "%");
+		hm.put("a_cate", a_cate);
+		
+		return sqlSessionTemplate.selectList("area.areaSearch1", hm);
+		
 	}
 
 	//여행지 글쓰기
@@ -30,11 +55,12 @@ public class AreaService implements AreaDao{
 
 	//파일 업로드
 	@Override
-	public void fileupload(String originalFilename, String saveFilename) {
+	public void fileupload(String originalFilename, String saveFilename, int a_img_index) {
 		
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("a_img_org", originalFilename);
 		hm.put("a_img_sav", saveFilename);
+		hm.put("a_img_index", a_img_index);
 		
 		sqlSessionTemplate.insert("area.fileupload", hm);
 	}
@@ -49,6 +75,12 @@ public class AreaService implements AreaDao{
 	@Override
 	public List<AreaModel> area_imgList(int a_no) {
 		return sqlSessionTemplate.selectList("area.area_imgList", a_no);
+	}
+
+	//여행지 상세보기 할때 이미지 갤러리의 메인 이미지 불러오기
+	@Override
+	public AreaModel main_img(int a_no) {
+		return sqlSessionTemplate.selectOne("area.main_img", a_no);
 	}
 	
 

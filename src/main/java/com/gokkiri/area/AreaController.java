@@ -24,6 +24,9 @@ public class AreaController {
 	private AreaService areaService;
 	
 	private static final String uploadPath = "C:\\Users\\ChoiSuHyun\\workspace\\git\\Gokkiri\\src\\main\\webapp\\resources\\area_img\\";
+	int totalCount;
+	int a_cate;
+	int a_img_index;
 	
 	//여행지 리스트 보기
 	@RequestMapping("areaList.go")
@@ -31,9 +34,41 @@ public class AreaController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		List<AreaModel> areaList = areaService.areaList();
+		List<AreaModel> areaList = null;
+		
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		//검색 로직
+		if(searchKeyword != null){
+			searchKeyword = new String(searchKeyword.getBytes("8859_1"), "euc-kr");
+			int searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			a_cate = Integer.parseInt(request.getParameter("a_cate"));
+			
+			if(searchNum == 0)
+				//제목 검색
+				areaList = areaService.areaSearch0(searchKeyword, a_cate);
+			else if(searchNum == 1)
+				//내용 검색
+				areaList = areaService.areaSearch1(searchKeyword, a_cate);
+			
+			totalCount = areaList.size();
+			
+			mav.addObject("areaList", areaList);
+			mav.addObject("totalCount", totalCount);
+			mav.addObject("searchKeyword", searchKeyword);
+			mav.setViewName("areaList");
+			
+			return mav;
+		}
+		
+		a_cate = Integer.parseInt(request.getParameter("a_cate"));
+		
+		areaList = areaService.areaList(a_cate);
+
+		totalCount = areaList.size();
 		
 		mav.addObject("areaList", areaList);
+		mav.addObject("totalCount", totalCount);
 		mav.setViewName("areaList");
 		
 		return mav;
@@ -88,7 +123,12 @@ public class AreaController {
 				//파일 저장
 				mf.get(i).transferTo(new File(savePath));
 				
-				areaService.fileupload(originalFilename, saveFilename);
+				//리스트에서 보여줄 첫번째 이미지에 인덱스 부여
+				if(i==0){
+				a_img_index = 1;
+				}
+				
+				areaService.fileupload(originalFilename, saveFilename, a_img_index);
 			}
 			
 		}
@@ -107,9 +147,11 @@ public class AreaController {
 		
 		AreaModel areaModel = areaService.areaDetail(a_no);
 		List<AreaModel> area_imgList = areaService.area_imgList(a_no);
+		AreaModel main_img = areaService.main_img(a_no);
 		
 		mav.addObject("areaModel", areaModel);
 		mav.addObject("area_imgList", area_imgList);
+		mav.addObject("main_img", main_img);
 		mav.setViewName("areaDetail");
 		
 		return mav;
