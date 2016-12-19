@@ -18,7 +18,7 @@ import org.apache.commons.io.FilenameUtils;
 
 @Controller
 @RequestMapping("/area")
-public class AreaController {
+public class AreaController { 
 	
 	@Resource(name="areaService")
 	private AreaService areaService;

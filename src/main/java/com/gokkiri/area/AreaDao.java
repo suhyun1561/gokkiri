@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface AreaDao {
 	
 	//여행지 리스트 보기
-	public List<AreaModel> areaList(int a_cate);
+	public List<AreaModel> areaList(int a_cate); 
 	
 	//여행지 리스트 - 제목 검색
 	public List<AreaModel> areaSearch0(String searchKeyword, int a_cate);

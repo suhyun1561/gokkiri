@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<script type="text/javascript">
+<script type="text/javascript"> 
 
 function areaList(){
 	if(confirm("리스트로 이동하시겠습니까?") == true){

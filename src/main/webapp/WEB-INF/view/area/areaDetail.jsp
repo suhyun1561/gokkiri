@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>Insert title here</title> 
 <style>
 /* 이미지 슬라이드 css */
 li {

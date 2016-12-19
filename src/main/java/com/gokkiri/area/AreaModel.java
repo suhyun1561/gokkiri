@@ -3,7 +3,7 @@ package com.gokkiri.area;
 import java.util.Date;
 import java.io.File;
 
-public class AreaModel {
+public class AreaModel { 
 	
 	private int c_no;			//도시 번호
 	
