@@ -1,1 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="city">
+
+	<resultMap type="cityModel" id="cityRes">
+	
+		<result property="state_no" column="state_no" />
+	
+		<result property="c_no" column="c_no" />
+		<result property="c_name" column="c_name" />
+		<result property="c_con" column="c_con" />
+		<result property="c_like" column="c_like" />
+		<result property="c_addr" column="c_addr" />
+		<result property="c_img_org" column="c_img_org" />
+		<result property="c_img_sav" column="c_img_sav" />
+		
+		<!-- City_Img -->
+		<result property="c_img_no" column="c_img_no" />
+		<result property="c_img_org" column="c_img_org" />
+		<result property="c_img_sav" column="c_img_sav" />
+		
+	</resultMap>
+	
+	<select id="cityList" resultMap="cityRes">
+		SELECT *
+		FROM CITY
+		ORDER BY C_NO DESC
+	</select>
+	
+	<insert id="insertcity" parameterType="cityModel">
+		insert into city(c_no, c_name, c_con, c_like, c_addr, state_no)
+		values(city_SEQ.NEXTVAL, #{c_name}, #{c_con}, #{c_like}, #{c_addr}, #{state_no})
+	</insert>
+
+	<!-- 도시명 검색 -->
+	<select id="citySearch0" resultMap="cityRes" parameterType="String">
+		SELECT * 
+		FROM city
+		WHERE c_name like #{search}
+		ORDER BY no DESC
+	</select>
+	
+	<delete id="deletecity" parameterType="cityModel">
+		delete from city where c_no = #{c_no}
+	</delete>
+</mapper>
