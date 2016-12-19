@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<resultMap type="area" id="areaRes">
 		
-		<result property="c_no" column="c_no" />
-		
+		<result property="c_no" column="c_no" /> 
+		 
 		<!-- AREA 테이블 -->
 		<result property="a_no" column="a_no" />
 		<result property="a_name" column="a_name" />
